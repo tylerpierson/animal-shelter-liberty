@@ -86,17 +86,17 @@ function App() {
     }
   };
 
-  // CreateBlog
-  // We need token authentication in order to verify that someone can make a blog
+  // CreateAnimal
+  // We need token authentication in order to verify that someone can make a animal
   // Now that we have the token from the signup/login above, we will pass it into the following functions for authentication
-  const createBlog = async (blogData, token) => {
+  const createAnimal = async (animalData, token) => {
     // https://i.imgur.com/3quZxs4.png
     // Step 4
     if (!token) {
       return;
     }
     try {
-      const response = await fetch('/api/blogs', {
+      const response = await fetch('/api/animals', {
         method: 'POST',
         headers: {
           // This part is only necessary when sending data, not when retrieving it, i.e. GET requests
@@ -105,7 +105,7 @@ function App() {
           // Tell it that we have a user token
           'Authorization': "Bearer ".concat(token)
         },
-        body: JSON.stringify(blogData)
+        body: JSON.stringify(animalData)
       });
       const data = await response.json();
       return data;
@@ -114,10 +114,10 @@ function App() {
     }
   };
 
-  // ReadBlog - we don't need authentication
-  const getAllBlogs = async () => {
+  // ReadAnimal - we don't need authentication
+  const getAllAnimals = async () => {
     try {
-      const response = await fetch('/api/blogs');
+      const response = await fetch('/api/animals');
       const data = await response.json();
       return data;
     } catch (error) {
@@ -125,10 +125,10 @@ function App() {
     }
   };
 
-  // Show and individual blog - no need for authentication
-  const getIndividualBlog = async id => {
+  // Show and individual animal - no need for authentication
+  const getIndividualAnimal = async id => {
     try {
-      const response = await fetch("/api/blogs/".concat(id));
+      const response = await fetch("/api/animals/".concat(id));
       const data = await response.json();
       return data;
     } catch (error) {
@@ -136,15 +136,15 @@ function App() {
     }
   };
 
-  // UpdateBlog
-  const updateBlog = async (newBlogData, id, token) => {
+  // UpdateAnimal
+  const updateAnimal = async (newAnimalData, id, token) => {
     // https://i.imgur.com/3quZxs4.png
     // Step 4
     if (!token) {
       return;
     }
     try {
-      const response = await fetch("/api/blogs/".concat(id), {
+      const response = await fetch("/api/animals/".concat(id), {
         method: 'PUT',
         headers: {
           // This part is only necessary when sending data, not when retrieving it, i.e. GET requests
@@ -153,7 +153,7 @@ function App() {
           // Tell it that we have a user token
           'Authorization': "Bearer ".concat(token)
         },
-        body: JSON.stringify(newBlogData)
+        body: JSON.stringify(newAnimalData)
       });
       const data = await response.json();
       return data;
@@ -162,15 +162,15 @@ function App() {
     }
   };
 
-  // DeleteBlog
-  const deleteBlog = async (id, token) => {
+  // DeleteAnimal
+  const deleteAnimal = async (id, token) => {
     // https://i.imgur.com/3quZxs4.png
     // Step 4
     if (!token) {
       return;
     }
     try {
-      const response = await fetch("/api/blogs/".concat(id), {
+      const response = await fetch("/api/animals/".concat(id), {
         method: 'DELETE',
         headers: {
           // Don't need content-type because we are not sending any data
@@ -202,8 +202,8 @@ function App() {
       ,
       setToken: setToken,
       setUser: setUser,
-      createBlog: createBlog,
-      getAllBlogs: getAllBlogs
+      createAnimal: createAnimal,
+      getAllAnimals: getAllAnimals
     })
   }), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
     path: "/register",
@@ -216,34 +216,34 @@ function App() {
       login: login
     })
   }), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
-    path: "/blog",
+    path: "/animal",
     element: /*#__PURE__*/React.createElement(_pages_ShowPage_ShowPage__WEBPACK_IMPORTED_MODULE_4__["default"]
     // Pass user, token, && setToken props down to HomePage
     , {
       user: user,
       token: token,
       setToken: setToken,
-      getIndividualBlog: getIndividualBlog,
-      updateBlog: updateBlog,
-      deleteBlog: deleteBlog
+      getIndividualAnimal: getIndividualAnimal,
+      updateAnimal: updateAnimal,
+      deleteAnimal: deleteAnimal
     })
   }))));
 }
 
 /***/ }),
 
-/***/ "./src/components/Blogs/Blogs.js":
-/*!***************************************!*\
-  !*** ./src/components/Blogs/Blogs.js ***!
-  \***************************************/
+/***/ "./src/components/Animals/Animals.js":
+/*!*******************************************!*\
+  !*** ./src/components/Animals/Animals.js ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Blogs)
+/* harmony export */   "default": () => (/* binding */ Animals)
 /* harmony export */ });
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function Blogs(props) {
-  return /*#__PURE__*/React.createElement("h1", null, "Blogs");
+function Animals(props) {
+  return /*#__PURE__*/React.createElement("h1", null, "Animals");
 }
 
 /***/ }),
@@ -276,8 +276,7 @@ function CreateForm(props) {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await props.createBlog(formData, props.token);
-      window.location.reload();
+      await props.createAnimal(formData, props.token);
       // cool thing to do once there is a show page done
     } catch (error) {
       console.error(error);
@@ -293,7 +292,7 @@ function CreateForm(props) {
   return /*#__PURE__*/React.createElement("form", {
     onSubmit: handleSubmit,
     className: _CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].form
-  }, /*#__PURE__*/React.createElement("h2", null, "Create a new blog, ", /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("h2", null, "Create a new animal, ", /*#__PURE__*/React.createElement("span", {
     className: _CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].span
   }, props.user.name)), /*#__PURE__*/React.createElement("input", {
     className: "".concat(_CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].input, " ").concat(_CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].title),
@@ -312,7 +311,7 @@ function CreateForm(props) {
   }), /*#__PURE__*/React.createElement("input", {
     className: _CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].button,
     type: "submit",
-    value: "Create Blog"
+    value: "Create Animal"
   }));
 }
 
@@ -417,7 +416,7 @@ function NavBar(props) {
     className: _NavBar_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].li
   }, "Home")), /*#__PURE__*/React.createElement("h1", {
     className: _NavBar_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].h1
-  }, "Liberty Blogs"), !token ? /*#__PURE__*/React.createElement("a", {
+  }, "Liberty Animals"), !token ? /*#__PURE__*/React.createElement("a", {
     className: "".concat(_NavBar_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].a, " ").concat(_NavBar_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].login),
     href: "/register"
   }, /*#__PURE__*/React.createElement("li", {
@@ -580,7 +579,7 @@ function AuthPage(props) {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_CreateForm_CreateForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/CreateForm/CreateForm */ "./src/components/CreateForm/CreateForm.js");
-/* harmony import */ var _components_Blogs_Blogs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Blogs/Blogs */ "./src/components/Blogs/Blogs.js");
+/* harmony import */ var _components_Animals_Animals__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Animals/Animals */ "./src/components/Animals/Animals.js");
 /* harmony import */ var _HomePage_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./HomePage.module.scss */ "./src/pages/HomePage/HomePage.module.scss");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
@@ -588,21 +587,21 @@ function AuthPage(props) {
 
 
 function HomePage(props) {
-  const [blogs, setBlogs] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [animals, setAnimals] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [showCreate, setShowCreate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
 
-  // Blogs useEffect
-  // Make sure we have the blog data after the user mounts
+  // Animals useEffect
+  // Make sure we have the animal data after the user mounts
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    const fetchBlogs = async () => {
+    const fetchAnimals = async () => {
       try {
-        const data = await props.getAllBlogs();
-        setBlogs(data);
+        const data = await props.getAllAnimals();
+        setAnimals(data);
       } catch (error) {
         console.error(error);
       }
     };
-    fetchBlogs();
+    fetchAnimals();
   }, []);
 
   // Checking the token && user in localStorage
@@ -619,11 +618,11 @@ function HomePage(props) {
     className: _HomePage_module_scss__WEBPACK_IMPORTED_MODULE_3__["default"].h1
   }, "Welcome Back!"), showCreate ? /*#__PURE__*/React.createElement(_components_CreateForm_CreateForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
     user: props.user,
-    createBlog: props.createBlog,
+    createAnimal: props.createAnimal,
     token: props.token
-  }) : /*#__PURE__*/React.createElement(React.Fragment, null), blogs.length ? /*#__PURE__*/React.createElement(_components_Blogs_Blogs__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    blogs: blogs
-  }) : 'Sorry, no blogs yet!'));
+  }) : /*#__PURE__*/React.createElement(React.Fragment, null), animals.length ? /*#__PURE__*/React.createElement(_components_Animals_Animals__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    animals: animals
+  }) : 'Sorry, no animals yet!'));
 }
 
 /***/ }),
@@ -1789,4 +1788,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.3230329756c523ae25b88642d316dfc1.js.map
+//# sourceMappingURL=App.6611e6520f7f4ace770594e307ee466d.js.map

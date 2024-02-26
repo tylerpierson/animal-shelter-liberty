@@ -10,8 +10,7 @@ export default function CreateForm(props) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await props.createBlog(formData, props.token)
-            window.location.reload()
+            await props.createAnimal(formData, props.token)
             // cool thing to do once there is a show page done
         } catch (error) {
             console.error(error)
@@ -26,10 +25,10 @@ export default function CreateForm(props) {
 
     return(
         <form onSubmit={handleSubmit} className={styles.form}>
-            <h2>Create a new blog, <span className={styles.span}>{props.user.name}</span></h2>
+            <h2>Create a new animal, <span className={styles.span}>{props.user.name}</span></h2>
             <input className={`${styles.input} ${styles.title}`} placeholder="Title" type="text" name="title" value={formData.title} onChange={handleChange} />
             <textarea className={`${styles.input} ${styles.body}`} placeholder="Body" type="text" name="body" value={formData.body} onChange={handleChange} />
-            <input className={styles.button} type="submit" value="Create Blog" />
+            <input className={styles.button} type="submit" value="Create Animal" />
         </form>
     )
 }

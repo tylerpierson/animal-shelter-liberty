@@ -2,7 +2,7 @@ const { model, Schema } = require('mongoose')
 
 
 
-const blogSchema = new Schema ({
+const animalSchema = new Schema ({
     title: String,
     body: String,
     user: { type: Schema.Types.ObjectId, ref: 'User'}
@@ -10,4 +10,4 @@ const blogSchema = new Schema ({
     timestamps: true
 })
 
-module.exports = model('Blog', blogSchema)
+module.exports = model('Animal', animalSchema)

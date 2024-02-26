@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react'
 import CreateForm from '../../components/CreateForm/CreateForm' 
-import Blogs from '../../components/Blogs/Blogs' 
+import Animals from '../../components/Animals/Animals' 
 import styles from './HomePage.module.scss'
 
 export default function HomePage(props){
-    const [blogs, setBlogs] = useState([])
+    const [animals, setAnimals] = useState([])
     const [showCreate, setShowCreate] = useState(false)
 
-    // Blogs useEffect
-        // Make sure we have the blog data after the user mounts
+    // Animals useEffect
+        // Make sure we have the animal data after the user mounts
     useEffect(() => {
-        const fetchBlogs = async () => {
+        const fetchAnimals = async () => {
             try {
-                const data = await props.getAllBlogs()
-                setBlogs(data)
+                const data = await props.getAllAnimals()
+                setAnimals(data)
             } catch (error) {
                 console.error(error)
             }
         }
-        fetchBlogs()
+        fetchAnimals()
     }, [])
 
     // Checking the token && user in localStorage
@@ -36,8 +36,8 @@ export default function HomePage(props){
         <>
             <div>
                 <h1 className={styles.h1}>Welcome Back!</h1>
-                { showCreate ? <CreateForm user={props.user} createBlog={props.createBlog} token={props.token} /> : <></> }
-                { blogs.length ? <Blogs blogs={blogs} /> : 'Sorry, no blogs yet!'}
+                { showCreate ? <CreateForm user={props.user} createAnimal={props.createAnimal} token={props.token} /> : <></> }
+                { animals.length ? <Animals animals={animals} /> : 'Sorry, no animals yet!'}
             </div>
         </>
     )

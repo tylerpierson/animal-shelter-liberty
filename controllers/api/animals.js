@@ -1,4 +1,4 @@
-const Blog = require('../../models/blog')
+const Animal = require('../../models/animal')
 
 
 module.exports = {
@@ -7,29 +7,29 @@ module.exports = {
     show,
     update,
     destroy,
-    jsonBlogs,
-    jsonBlog
+    jsonAnimals,
+    jsonAnimal
 }
 
 // jsonTodos jsonTodo
 // viewControllers
 
-function jsonBlog (_, res) {
-    res.json(res.locals.data.blog)
+function jsonAnimal (_, res) {
+    res.json(res.locals.data.animal)
 }
 
-function jsonBlogs (_, res) {
-    res.json(res.locals.data.blogs)
+function jsonAnimals (_, res) {
+    res.json(res.locals.data.animals)
 }
 
 /****** C - Create *******/
 async function create(req, res, next){
     try {
         req.body.user = req.user._id
-        const blog = await Blog.create(req.body) //{ title, body, user }
-        req.user.blogs.addToSet(blog)
+        const animal = await Animal.create(req.body) //{ title, body, user }
+        req.user.animals.addToSet(animal)
         req.user.save()
-        res.locals.data.blog = blog
+        res.locals.data.animal = animal
         next()
     } catch (error) {
         res.status(400).json({ msg: error.message })
@@ -40,8 +40,8 @@ async function create(req, res, next){
 
 async function index(_, res ,next) {
     try {
-        const blogs = await Blog.find({})
-        res.locals.data.blogs = blogs
+        const animals = await Animal.find({})
+        res.locals.data.animals = animals
         next()
     } catch (error) {
         res.status(400).json({ msg: error.message })
@@ -51,8 +51,8 @@ async function index(_, res ,next) {
 
 async function show(req ,res,next) {
     try {
-        const blog = await Blog.findById(req.params.id)
-        res.locals.data.blog = blog
+        const animal = await Animal.findById(req.params.id)
+        res.locals.data.animal = animal
         next()
     } catch (error) {
         res.status(400).json({ msg: error.message })
@@ -65,8 +65,8 @@ async function show(req ,res,next) {
 
 async function update(req ,res,next) {
     try {
-        const blog = await Blog.findOneAndUpdate({_id : req.params.id,  user: req.user._id}, req.body, { new: true })
-        res.locals.data.blog = blog
+        const animal = await Animal.findOneAndUpdate({_id : req.params.id,  user: req.user._id}, req.body, { new: true })
+        res.locals.data.animal = animal
         next()
     } catch (error) {
         res.status(400).json({ msg: error.message })
@@ -77,10 +77,10 @@ async function update(req ,res,next) {
 
 async function destroy(req ,res,next) {
     try {
-        const blog = await Blog.findOneAndDelete({_id : req.params.id,  user: req.user._id})
-        req.user.blogs.pull(blog)
+        const animal = await Animal.findOneAndDelete({_id : req.params.id,  user: req.user._id})
+        req.user.animals.pull(animal)
         req.user.save()
-        res.locals.data.blog = blog
+        res.locals.data.animal = animal
         next()
     } catch (error) {
         res.status(400).json({ msg: error.message })

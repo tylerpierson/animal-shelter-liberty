@@ -65,17 +65,17 @@ export default function App(){
         }
     }
 
-    // CreateBlog
-    // We need token authentication in order to verify that someone can make a blog
+    // CreateAnimal
+    // We need token authentication in order to verify that someone can make a animal
     // Now that we have the token from the signup/login above, we will pass it into the following functions for authentication
-    const createBlog = async (blogData, token) => {
+    const createAnimal = async (animalData, token) => {
         // https://i.imgur.com/3quZxs4.png
         // Step 4
         if(!token){
             return
         }
         try {
-            const response = await fetch('/api/blogs', {
+            const response = await fetch('/api/animals', {
                 method: 'POST',
                 headers: {
                     // This part is only necessary when sending data, not when retrieving it, i.e. GET requests
@@ -84,7 +84,7 @@ export default function App(){
                     // Tell it that we have a user token
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify(blogData)
+                body: JSON.stringify(animalData)
             })
             const data = await response.json()
             return data
@@ -93,10 +93,10 @@ export default function App(){
         }
     }
 
-    // ReadBlog - we don't need authentication
-    const getAllBlogs = async () => {
+    // ReadAnimal - we don't need authentication
+    const getAllAnimals = async () => {
         try {
-            const response = await fetch('/api/blogs')
+            const response = await fetch('/api/animals')
             const data = await response.json()
             return data
         } catch (error) {
@@ -104,10 +104,10 @@ export default function App(){
         }
     }
 
-    // Show and individual blog - no need for authentication
-    const getIndividualBlog = async (id) => {
+    // Show and individual animal - no need for authentication
+    const getIndividualAnimal = async (id) => {
         try {
-            const response = await fetch(`/api/blogs/${id}`)
+            const response = await fetch(`/api/animals/${id}`)
             const data = await response.json()
             return data
         } catch (error) {
@@ -115,15 +115,15 @@ export default function App(){
         }
     }
 
-    // UpdateBlog
-    const updateBlog = async (newBlogData, id, token) => {
+    // UpdateAnimal
+    const updateAnimal = async (newAnimalData, id, token) => {
         // https://i.imgur.com/3quZxs4.png
         // Step 4
         if(!token){
             return
         }
         try {
-            const response = await fetch(`/api/blogs/${id}`, {
+            const response = await fetch(`/api/animals/${id}`, {
                 method: 'PUT',
                 headers: {
                     // This part is only necessary when sending data, not when retrieving it, i.e. GET requests
@@ -132,7 +132,7 @@ export default function App(){
                     // Tell it that we have a user token
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify(newBlogData)
+                body: JSON.stringify(newAnimalData)
             })
             const data = await response.json()
             return data
@@ -141,15 +141,15 @@ export default function App(){
         }
     }
 
-    // DeleteBlog
-    const deleteBlog = async (id, token) => {
+    // DeleteAnimal
+    const deleteAnimal = async (id, token) => {
         // https://i.imgur.com/3quZxs4.png
         // Step 4
         if(!token){
             return
         }
         try {
-            const response = await fetch(`/api/blogs/${id}`, {
+            const response = await fetch(`/api/animals/${id}`, {
                 method: 'DELETE',
                 headers: {
                     // Don't need content-type because we are not sending any data
@@ -175,8 +175,8 @@ export default function App(){
             <div className={styles.container}>
                 <Routes>
                     {/* What is needed on this page:
-                        Get all Blog posts when the component mounts 
-                        Create an individual Blog post
+                        Get all Animal posts when the component mounts 
+                        Create an individual Animal post
                     */}
                     <Route path='/' 
                     element={<HomePage 
@@ -186,8 +186,8 @@ export default function App(){
                         // nameOfTheProp={nameOfTheFunction}
                         setToken={setToken}
                         setUser={setUser}
-                        createBlog={createBlog}
-                        getAllBlogs={getAllBlogs}
+                        createAnimal={createAnimal}
+                        getAllAnimals={getAllAnimals}
                     />}></Route>
 
                     {/* What is needed on this page:
@@ -204,19 +204,19 @@ export default function App(){
                     />}></Route>
 
                     {/* What is needed on this page:
-                        Be able to GET an individual blog
-                        Be able to UPDATE blog
-                        Be able to DELETE blog
+                        Be able to GET an individual animal
+                        Be able to UPDATE animal
+                        Be able to DELETE animal
                     */}
-                    <Route path='/blog' 
+                    <Route path='/animal' 
                     element={<ShowPage 
                     // Pass user, token, && setToken props down to HomePage
                         user={user} 
                         token={token} 
                         setToken={setToken}
-                        getIndividualBlog={getIndividualBlog}
-                        updateBlog={updateBlog}
-                        deleteBlog={deleteBlog}
+                        getIndividualAnimal={getIndividualAnimal}
+                        updateAnimal={updateAnimal}
+                        deleteAnimal={deleteAnimal}
                     />}></Route>
                 </Routes>
             </div>

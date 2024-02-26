@@ -12,7 +12,7 @@ export default function NavBar(props) {
             <a className={`${styles.a} ${styles.home}`} href='/'>
                 <li className={styles.li}>Home</li>
             </a>
-            <h1 className={styles.h1}>Liberty Blogs</h1>
+            <h1 className={styles.h1}>Liberty Animals</h1>
             {!token ? (            
                 <a className={`${styles.a} ${styles.login}`} href='/register'>
                     <li className={styles.li}>Login/Sign Up</li>
