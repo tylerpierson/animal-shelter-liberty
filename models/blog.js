@@ -1,6 +1,7 @@
 const { model, Schema } = require('mongoose')
 
 
+
 const blogSchema = new Schema ({
     title: String,
     body: String,
