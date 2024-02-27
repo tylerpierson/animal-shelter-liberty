@@ -270,8 +270,10 @@ function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = 
 
 function CreateForm(props) {
   const [formData, setFormData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-    title: '',
-    body: ''
+    name: '',
+    species: '',
+    image: '',
+    reservedForAdoption: false
   });
   const handleSubmit = async e => {
     e.preventDefault();
@@ -295,20 +297,35 @@ function CreateForm(props) {
   }, /*#__PURE__*/React.createElement("h2", null, "Create a new animal, ", /*#__PURE__*/React.createElement("span", {
     className: _CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].span
   }, props.user.name)), /*#__PURE__*/React.createElement("input", {
-    className: "".concat(_CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].input, " ").concat(_CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].title),
-    placeholder: "Title",
+    className: "".concat(_CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].input, " ").concat(_CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].name),
+    placeholder: "Name",
     type: "text",
-    name: "title",
-    value: formData.title,
-    onChange: handleChange
-  }), /*#__PURE__*/React.createElement("textarea", {
-    className: "".concat(_CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].input, " ").concat(_CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].body),
-    placeholder: "Body",
-    type: "text",
-    name: "body",
-    value: formData.body,
+    name: "name",
+    value: formData.name,
     onChange: handleChange
   }), /*#__PURE__*/React.createElement("input", {
+    className: "".concat(_CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].input, " ").concat(_CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].species),
+    placeholder: "Species",
+    type: "text",
+    name: "species",
+    value: formData.species,
+    onChange: handleChange
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "".concat(_CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].input, " ").concat(_CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].image),
+    placeholder: "Image URL",
+    type: "text",
+    name: "image",
+    value: formData.image,
+    onChange: handleChange
+  }), /*#__PURE__*/React.createElement("select", {
+    name: "reservedForAdoption",
+    value: formData.reservedForAdoption,
+    onChange: handleChange
+  }, /*#__PURE__*/React.createElement("option", {
+    value: false
+  }, "Up for Adoption"), /*#__PURE__*/React.createElement("option", {
+    value: true
+  }, "Adopted")), /*#__PURE__*/React.createElement("input", {
     className: _CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].button,
     type: "submit",
     value: "Create Animal"
@@ -1788,4 +1805,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.6611e6520f7f4ace770594e307ee466d.js.map
+//# sourceMappingURL=App.9fdda051407dffbf943ef3f8e75b8d04.js.map

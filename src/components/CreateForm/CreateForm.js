@@ -3,8 +3,10 @@ import styles from './CreateForm.module.scss'
 
 export default function CreateForm(props) {
     const [formData, setFormData] = useState({
-        title: '',
-        body: ''
+        name: '',
+        species: '',
+        image: '',
+        reservedForAdoption: false
     })
 
     const handleSubmit = async (e) => {
@@ -26,8 +28,13 @@ export default function CreateForm(props) {
     return(
         <form onSubmit={handleSubmit} className={styles.form}>
             <h2>Create a new animal, <span className={styles.span}>{props.user.name}</span></h2>
-            <input className={`${styles.input} ${styles.title}`} placeholder="Title" type="text" name="title" value={formData.title} onChange={handleChange} />
-            <textarea className={`${styles.input} ${styles.body}`} placeholder="Body" type="text" name="body" value={formData.body} onChange={handleChange} />
+            <input className={`${styles.input} ${styles.name}`} placeholder="Name" type="text" name="name" value={formData.name} onChange={handleChange} />
+            <input className={`${styles.input} ${styles.species}`} placeholder="Species" type="text" name="species" value={formData.species} onChange={handleChange} />
+            <input className={`${styles.input} ${styles.image}`} placeholder="Image URL" type="text" name="image" value={formData.image} onChange={handleChange} />
+            <select name="reservedForAdoption" value={formData.reservedForAdoption} onChange={handleChange}>
+                <option value={false}>Up for Adoption</option>
+                <option value={true}>Adopted</option>
+            </select>
             <input className={styles.button} type="submit" value="Create Animal" />
         </form>
     )
